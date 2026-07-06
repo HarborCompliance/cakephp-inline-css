@@ -6,17 +6,29 @@ This plugin provides a CakePHP helper that uses [CssToInlineStyles](https://gith
 
 ## Requirements
 
-* CakePHP 3.x
+* CakePHP 3.x / 4.x / 5.x
 
 ## Installation
 
 This plugin should be installed using Composer:-
 
 ```
-composer require drmonkeyninja/cakephp-inline-css:3.0.*
+composer require drmonkeyninja/cakephp-inline-css
 ```
 
-Then add the following line to your bootstrap.php to load the plugin.
+Then load the plugin in your `Application::bootstrap()` (CakePHP 4.x/5.x):
+
+```php
+$this->addPlugin('InlineCss');
+```
+
+or via the CLI:
+
+```
+bin/cake plugin load InlineCss
+```
+
+On CakePHP 3.x, add the following line to your `bootstrap.php` instead:
 
 ```php
 Plugin::load('InlineCss');
@@ -24,7 +36,19 @@ Plugin::load('InlineCss');
 
 ## Usage
 
-To use this plugin you want to load the `InlineCss` helper to use with your email's HTML template:-
+To use this plugin you want to load the `InlineCss` helper to use with your email's HTML template. On CakePHP 4.x/5.x, using the `Mailer` API:-
+
+```php
+$mailer = new Mailer();
+$mailer->setTemplate('welcome', 'fancy')
+    ->setEmailFormat('html')
+    ->viewBuilder()->setHelpers(['InlineCss.InlineCss']);
+$mailer->setTo('bob@example.com')
+    ->setFrom('app@domain.com')
+    ->send();
+```
+
+On CakePHP 3.x, using the legacy `Email` API:-
 
 ```php
 $email = new Email();

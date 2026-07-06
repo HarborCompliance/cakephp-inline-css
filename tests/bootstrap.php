@@ -1,5 +1,9 @@
 <?php
-require dirname(__DIR__) . '/vendor/cakephp/cakephp/src/basics.php';
+if (file_exists(dirname(__DIR__) . '/vendor/cakephp/cakephp/src/functions.php')) {
+    require dirname(__DIR__) . '/vendor/cakephp/cakephp/src/functions.php';
+} else {
+    require dirname(__DIR__) . '/vendor/cakephp/cakephp/src/basics.php';
+}
 require dirname(__DIR__) . '/vendor/autoload.php';
 if (!defined('DS')) {
     define('DS', DIRECTORY_SEPARATOR);
@@ -28,7 +32,8 @@ define('CAKE_CORE_INCLUDE_PATH', ROOT . '/vendor/cakephp/cakephp');
 define('CORE_PATH', CAKE_CORE_INCLUDE_PATH . DS);
 define('CAKE', CORE_PATH . 'src' . DS);
 Cake\Core\Configure::write('App', [
-    'namespace' => 'App'
+    'namespace' => 'App',
+    'encoding' => 'UTF-8'
 ]);
 Cake\Core\Configure::write('debug', true);
 $cache = [
