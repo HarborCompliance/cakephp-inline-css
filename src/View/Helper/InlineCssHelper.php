@@ -17,12 +17,10 @@ class InlineCssHelper extends Helper
     {
         $content = $this->_View->fetch('content');
 
-        if (!isset($this->InlineCss)) {
-            $this->InlineCss = new CssToInlineStyles();
-        }
+        static $inliner = new CssToInlineStyles();
 
         // Convert inline style blocks to inline CSS on the HTML content.
-        $content = $this->InlineCss->convert($content);
+        $content = $inliner->convert($content);
 
         $this->_View->assign('content', $content);
 

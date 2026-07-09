@@ -1,5 +1,5 @@
 <?php
-namespace InlineCss\TestCase\View\Helper;
+namespace InlineCss\Test\TestCase\View\Helper;
 
 use Cake\Event\Event;
 use Cake\Http\ServerRequest;
@@ -9,6 +9,8 @@ use InlineCss\View\Helper\InlineCssHelper;
 
 class InlineCssHelperTest extends TestCase
 {
+
+    public $View = null;
 
     public $InlineCss = null;
 
